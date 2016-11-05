@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 
 const views = require('co-views')
 
@@ -7,7 +7,7 @@ let render = views('view/', {ext: 'ejs'})
 // GET /mise/index
 const getHome = function * (next) {
 	this.body = yield render('home.ejs', {
-		title: "作業中感情サポートソリューション"
+		title: '作業中感情サポートソリューション'
 	})
 }
 
@@ -15,6 +15,11 @@ const getLogin = function * (next) {
 	this.body = yield render({})
 }
 
+const getVoiceTest = function * (next) {
+	this.body = yield render('voicetest.ejs', {})
+}
+
 module.exports = {
-	getHome: getHome
+	getHome: getHome,
+	getVoiceTest: getVoiceTest
 }

@@ -1,4 +1,4 @@
-"strict mode"
+'strict mode'
 
 const Router     = require('koa-router')
 const json       = require('koa-json')
@@ -20,8 +20,8 @@ const route = (app, render) => {
 	const route = new Router()
 
 	APIv1
-		// .get('/voice', )
-		// .post('/voice', )
+		.get('/voice', voice.getVoice)
+		.post('/voice', voice.postVoice)
 
 		// .get('/motion')
 		// .post('/motion')
@@ -31,6 +31,7 @@ const route = (app, render) => {
 
 	route
 		.get('/', home.getHome)
+		.get('/voicetest', home.getVoiceTest)
 		// .get('statistics')
 
 	app

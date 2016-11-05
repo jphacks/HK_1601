@@ -2,6 +2,7 @@
 
 const Router     = require('koa-router')
 const json       = require('koa-json')
+const body = require('koa-body')()
 
 const home       = require('./home.js')
 const voice      = require('./voice.js')
@@ -21,7 +22,7 @@ const route = (app, render) => {
 
 	APIv1
 		.get('/voice', voice.getVoice)
-		.post('/voice', voice.postVoice)
+		.post('/voice', body, voice.postVoice)
 
 		// .get('/motion')
 		// .post('/motion')

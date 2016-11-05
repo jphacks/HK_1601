@@ -6,11 +6,17 @@ const q = require('q')
 const moment = require('moment')
 const firebase = require('../firebase.js').database()
 
+const Encoding = require('encoding-japanese')
+
+
 const wordListJson = require('../data/word_list.json')
 
 const gooApiID = '607f83a68afd2e7315c370519cbc40fa12d05ef1c1a83d184d3528ba936e7ef9'
 
 const analysisMorph = function (text) {
+	console.log('メソッド引数：' + text);
+	const utftext = Encoding.convert(text, {to: 'UTF8', from: 'AUTO', type: 'string'});
+	console.log(utftext);
 	const deferred = q.defer()
 	const url = 'https://labs.goo.ne.jp/api/morph'
 	axios.post(url, {
@@ -28,6 +34,7 @@ const analysisMorph = function (text) {
 }
 
 const filterByStressWords = function (userID, word) {
+	console.log(word);
 	const deferred = q.defer()
 	let key = ''
 	for (var i = 0; i < wordListJson.wordList.length; i++) {

@@ -26,7 +26,7 @@
 <script>
 SpeechRec.config({
    'SkyWayKey':'25df2b6b-a3c5-452a-853d-ee7a7b0aa165',
-   'OpusWorkerUrl':'libopus.worker.js',
+   'OpusWorkerUrl':'js/libopus.worker.js',
    "Recg:Nbest":3
    //"NrFlag":true
 });
@@ -64,16 +64,18 @@ SpeechRec.on_result(function(result){
     for(var i=0;i<result.candidates.length; i++){
     var w=result.candidates[i].speech;
     	if(w!="ａｕ")
-    	words+=" "+result.candidates[i].speech;
+    	words+=result.candidates[i].speech;
     }
     if(words!="")
     $("#result").prepend(words+"<br>");
-    // $("#result").text(words+"/r\n"+$("#result").text());
-    $.post(window.location.href + '/api/v1/voice',
-      {
+    console.log(words);
+    $.ajax({
+      type: "POST",
+      url: '/api/v1/voice',
+      data: {
         words: words
       }
-    );
+    });
     SpeechRec.start();
 });
 

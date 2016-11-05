@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <title></title>
+</head>
+<body>
+ 
+<!-- 音声認識開始用のボタン、および結果表示用のエリア -->
+<h1>SAKASA　音声認識</h1>
+<button id="start_rec">開始</button>
+<button id="stop_rec">停止</button>
+<div id="status"><span style="color:red">停止中</span></div>
+<div>音量：<span id="volume"></span></div>
+<div id="result"></div>
+ 
+<!-- 必要なライブラリ群の読み込み  -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script src="https://skyway.io/dist/msgpack.codec.js"></script>
+<script src="https://skyway.io/dist/libspeexdsp.js"></script>
+<script src="https://skyway.io/dist/resampler.min.js"></script>
+<script src="https://skyway.io/dist/speechrec.min.js"></script>
+ 
+<!-- 音声認識用のコードサンプル -->
+<script>
+SpeechRec.config({
+   'SkyWayKey':'25df2b6b-a3c5-452a-853d-ee7a7b0aa165',
+   'OpusWorkerUrl':'libopus.worker.js',
+   "Recg:Nbest":3
+   //"NrFlag":true
+});
+ 
+$("#start_rec").click(function(){
+ SpeechRec.start();
+});
+
+ $("#stop_rec").click(function(){
+ SpeechRec.stop();
+});
+
+SpeechRec.on_proc(function(info){
+ //console.log(info.volume);
+ $("#volume").text(info.volume);
+});
+ 
+SpeechRec.on_start(function(){
+  console.log("音声認識を開始します");
+$("#status").html("<span style=\"color:orange\">認識中</span>");
+});
+
+SpeechRec.on_stop(function(){
+ console.log("音声認識を終了します");
+ $("#status").html("<span style=\"color:red\">停止中</span>");
+});
+
+SpeechRec.on_voice_begin(function(){
+$("#status").html("<span style=\"color:green\">認識中&lt;解析中&gt;</span>");
+});
+
+SpeechRec.on_result(function(result){
+    console.log(result.candidates);
+    var words="";
+    for(var i=0;i<result.candidates.length; i++){
+    var w=result.candidates[i].speech;
+    	if(w!="ａｕ")
+    	words+=" "+result.candidates[i].speech;
+    }
+    if(words!="")
+    $("#result").prepend(words+"<br>");
+    // $("#result").text(words+"/r\n"+$("#result").text());
+    $.post(window.location.href + '/api/v1/voice',
+      {
+        words: words
+      }
+    );
+    SpeechRec.start();
+});
+
+SpeechRec.on_no_result(function(){
+ console.log("検出なし");
+    //$("#result").html("<span style=\"color:red\">検出なし</span>");
+ //$("#status").html("<span style=\"color:red\">停止中</span>");
+    SpeechRec.start();
+});
+
+SpeechRec.on_voiceless(function(){
+ console.log("検出なし");
+    //$("#result").html("<span style=\"color:red\">検出なし</span>");
+    SpeechRec.start();
+});
+
+SpeechRec.on_voice_too_long(function(){
+ console.log("終端なし");
+ $("#status").html("<span style=\"color:red\">停止中</span>");
+    SpeechRec.start();
+});
+
+SpeechRec.on_error(function(e){ 
+ console.log("検出なし");
+    $("#status").html("<span style=\"color:red\">エラー："+e+"</span>");
+    //SpeechRec.start();
+});
+
+</script>
+ 
+</body>
+</html>

@@ -69,7 +69,7 @@
         /**
          * 実データを表示
          */
-         $('#test').text(randomColor.toHex());
+         $('input[name="acclColor"]').val(randomColor.toHex());
         /*display.x.text(x);
         display.y.text(y);
         display.z.text(z);*/

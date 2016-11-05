@@ -17,6 +17,10 @@ const getMotion = function * (next) {
 	this.body = yield render('motion.ejs', renderText);
 }
 
+const postMotion = function * (next) {
+}
+
 module.exports = {
-	getMotion: getMotion
+	getMotion: getMotion,
+	postMotion: postMotion
 }

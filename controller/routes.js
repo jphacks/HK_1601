@@ -23,7 +23,7 @@ const route = (app, render) => {
 		// .get('/voice', )
 		// .post('/voice', )
 
-		// .get('/motion')
+		.get('/motion', motion.getMotion)
 		// .post('/motion')
 
 		// .get('/face')

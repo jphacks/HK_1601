@@ -5,6 +5,8 @@ tore
 
 lib
 assets/*
+public/js/*
+public/css/*
 
 # Icon must end with two \r
 Icon

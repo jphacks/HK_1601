@@ -12,6 +12,15 @@ GetCurrentLoginUserID = () => {
 	return uid
 }
 
+GetNameOfLoginUser = () => {
+	let user = firebase.auth().currentUser
+	let uid
+	if (user != null) {
+		name = user.name;
+	}
+	return name
+}
+
 require('../tags/google-login.tag')
 require('../tags/login-out-btn.tag')
 

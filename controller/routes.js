@@ -32,7 +32,9 @@ const route = (app, render) => {
 
 	route
 		.get('/', home.getHome)
+		.get('/login', home.getLoginPage)
 		.get('/voicetest', home.getVoiceTest)
+		.post('/google_login', body, home.postGoogleLogin)
 		// .get('statistics')
 
 	app

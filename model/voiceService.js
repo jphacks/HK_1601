@@ -30,7 +30,6 @@ const analysisMorph = function (text) {
 const filterByStressWords = function (userID, word) {
 	const deferred = q.defer()
 	let key = ''
-	console.log(wordListJson);
 	for (var i = 0; i < wordListJson.wordList.length; i++) {
 		wordListJson.wordList[i]
 		if (word === wordListJson.wordList[i]) {

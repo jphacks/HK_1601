@@ -6,8 +6,10 @@ const q = require('q')
 
 // POST /api/v1/voice
 const postVoice = function * (next) {
-	const userID = 1
+	const userID = this.request.body.uid
 	let list = []
+	console.log(this.request.body);
+	console.log(userID);
 	console.log(this.request.body.words)
 	let postedWords = voiceService.analysisMorph(this.request.body.words)
 	let les = yield postedWords

@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
- <meta charset="UTF-8">
- <title></title>
-</head>
-<body>
+<%- include("./parts/header") %>
+<login-out-btn></login-out-btn>
  
 <!-- 音声認識開始用のボタン、および結果表示用のエリア -->
 <h1>SAKASA　音声認識</h1>
@@ -73,6 +68,7 @@ SpeechRec.on_result(function(result){
       type: "POST",
       url: '/api/v1/voice',
       data: {
+        uid: GetCurrentLoginUserID(),
         words: words
       }
     });
@@ -105,6 +101,5 @@ SpeechRec.on_error(function(e){
 });
 
 </script>
- 
-</body>
-</html>
+
+<%- include("./parts/footer") %>

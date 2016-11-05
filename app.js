@@ -32,9 +32,9 @@ app.on('error', function (err) {
 
 const router = require('./controller/routes.js')(app)
 
-// https.createServer(options, app.callback()).listen(securePort, function () {
-// 	console.log('Secure Server start')
-// })
+https.createServer(options, app.callback()).listen(securePort, function () {
+ 	console.log('Secure Server start')
+})
 http.createServer(app.callback()).listen(port, function () {
 	console.log('Server start')
 })

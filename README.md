@@ -27,25 +27,11 @@
 * 形態素解析API
 
 #### フレームワーク・ライブラリ・モジュール
-* axios
-* co-views
 * ejs
-* encoding-japanese
 * firebase
-* jade
-* jquery
-* kcors
 * koa
-* koa-body
-* koa-json
-* koa-router
-* koa-static
-* moment
-* mongoose
-* q
-* request
 * riot
-* riotcontrol
+* uikit
 
 #### デバイス
 * 

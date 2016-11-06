@@ -3,6 +3,7 @@ const firebase = require('../../../firebase.js')
 
 let provider = new firebase.auth.GoogleAuthProvider()
 
+
 GetCurrentLoginUserID = () => {
 	let user = firebase.auth().currentUser
 	let uid
@@ -23,5 +24,7 @@ GetNameOfLoginUser = () => {
 
 require('../tags/google-login.tag')
 require('../tags/login-out-btn.tag')
+require('../tags/main-menu.tag')
+require('../tags/user-data.tag')
 
 riot.mount('*')

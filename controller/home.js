@@ -1,6 +1,7 @@
 'use strict'
 
 const views = require('co-views')
+const q = require('q')
 const firebase = require('../firebase.js')
 
 const provider = new firebase.auth.GoogleAuthProvider()
@@ -14,6 +15,7 @@ const getHome = function * (next) {
 	})
 }
 
+// GET /login
 const getLoginPage = function * (next) {
 	this.body = yield render('login.ejs', {
 		title: 'ログイン'
@@ -34,6 +36,27 @@ const postGoogleLogin = function * (next) {
 	this.body = yield render({})
 }
 
+// GET /mypage/:id
+const getMyPage = function * (next) {
+	const deferred = q.defer()
+	const db = firebase.database()
+	const stressLog = db.ref('stressLog/' + this.params.id)
+	stressLog.on('value', function (snapshot) {
+		console.log(snapshot.val())
+		const data = snapshot.val()
+		deferred.resolve({message: 'ok', result: data})
+	})
+	console.log(deferred.promise)
+	const res = deferred.promise
+	this.body = yield render('mypage.ejs', {
+		title: this.params.id,
+		userId: this.params.id,
+		data: res.result
+	})
+
+	
+}
+
 const getVoiceTest = function * (next) {
 	this.body = yield render('voicetest.ejs', {
 		title: 'SAKASA　音声認識'
@@ -44,5 +67,6 @@ module.exports = {
 	getHome: getHome,
 	getLoginPage: getLoginPage,
 	postGoogleLogin: postGoogleLogin,
+	getMyPage: getMyPage,
 	getVoiceTest: getVoiceTest
 }

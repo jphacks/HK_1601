@@ -58,6 +58,7 @@ const saveStressLog = function (userID, word) {
 	const deferred = q.defer()
 	const m = moment()
 	const nowTime = m.format('YYYY/MM/DD HH:mm:ss')
+	console.log(userID)
 	const log = firebase.ref('stressLog/' + userID).push()
 	log.set({
 		date: nowTime,

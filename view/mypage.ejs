@@ -1,0 +1,17 @@
+<%- include("./parts/header") %>
+
+<div class="uk-container uk-container-center uk-margin-large-top">
+	<h1>マイページ</h1>
+	<h2>User ID : <span class="user-id"><%= userId %></span></h2>
+	<user-data></user-data>
+	<p><%= data %></p>
+</div>
+
+<script type="text/javascript">
+	window.onload = function () {
+		console.log(sessionStorage.getItem('access_count_name'));
+	};
+	console.log(sessionStorage.getItem('access_count_name'));
+</script>
+
+<%- include("./parts/footer") %>

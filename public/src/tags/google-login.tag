@@ -18,6 +18,8 @@
 		this.login = (e) => {
 			firebase.auth().signInWithPopup(provider).then(function (result) {
 				token = result.credential.accessToken
+				sessionStorage.setItem('access_acount_uid', firebase.auth().currentUser.uid)
+				sessionStorage.setItem('access_acount_name', firebase.auth().currentUser.displayName)
 				var user = result.user
 				location.href = "/voicetest";
 			}).catch(function (error) {

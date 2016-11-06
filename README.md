@@ -48,4 +48,4 @@
 #### 期間中に開発した独自機能・技術
 * 3軸加速度センサで取得した値のうち、x軸をR、y軸をG、z軸をBと見立てて相互変換させた
 * slackカラースキームとして提示する8色を、[R, G, B]のうち2番目に高い値（中央値）を変化させることで取得
-（https://github.com/yasuy0shi/acclnode/blob/1299d0ddaf7eef53c74004d895ed8e9f954a58b3/routes/colors.js）
+（ https://github.com/yasuy0shi/acclnode/blob/1299d0ddaf7eef53c74004d895ed8e9f954a58b3/routes/colors.js ）

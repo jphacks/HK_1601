@@ -34,12 +34,12 @@
 * 3軸加速度センサ（iOS/Android内蔵）
 
 #### フレームワーク・ライブラリ・モジュール
-* ejs テンプレートエンジン
-* firebase DB, 認証機能
-* koa WEBフレームワーク
-* riot フロントエンドJS viewライブラリ
-* uikit　CSSフレームワーク
-* Heroku
+* ejs : テンプレートエンジン
+* firebase : DB, 認証機能
+* koa : WEBフレームワーク
+* riot : フロントエンドJS viewライブラリ
+* uikit : CSSフレームワーク
+* Heroku : PaaS
 
 #### デバイス
 * PC(WEB), iOS/Android

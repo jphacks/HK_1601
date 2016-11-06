@@ -31,6 +31,7 @@
 * Microsoft Cognitive Services
 * SkyWay
 * 形態素解析API
+* 3軸加速度センサ（iOS/Android内蔵）
 
 #### フレームワーク・ライブラリ・モジュール
 * ejs
@@ -41,7 +42,7 @@
 * Heroku
 
 #### デバイス
-* 3軸加速度センサ（iOS/Android内蔵）
+* PC, iOS/Android
 
 ### 独自技術
 #### 期間中に開発した独自機能・技術
